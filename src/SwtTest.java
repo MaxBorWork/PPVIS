@@ -1,9 +1,10 @@
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Group;
 
 
 public class SwtTest {
@@ -16,20 +17,21 @@ public class SwtTest {
         RowLayout rowLayout = new RowLayout();
         rowLayout.marginLeft = 10;
         rowLayout.marginTop = 10;
+        rowLayout.spacing = 15;
         shell.setLayout(rowLayout);
 
-        Label label = new Label(shell,SWT.NONE );
+        Group genderGroup = new Group(shell, SWT.NONE);
+        genderGroup.setLayout(new RowLayout(SWT.HORIZONTAL));
 
-        label.setText("Select language:");
+        Label label = new Label(genderGroup, SWT.NONE);
+        label.setText("Your gender: ");
 
-        // Create a dropdown Combo
-        Combo combo = new Combo(shell, SWT.DROP_DOWN);
+        Button buttonMale = new Button(genderGroup, SWT.RADIO);
+        buttonMale.setText("Male");
 
-        String[] items = new String[] { "English", "Vietnamese" };
+        Button buttonFemale = new Button(genderGroup, SWT.RADIO);
+        buttonFemale.setText("Female");
 
-        combo.setItems(items);
-
-        shell.setText("SWT Combo (o7planning.org)");
         shell.setSize(400, 200);
         shell.open();
         while (!shell.isDisposed()) {
