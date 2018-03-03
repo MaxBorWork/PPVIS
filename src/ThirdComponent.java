@@ -8,31 +8,23 @@ public class ThirdComponent {
     public static void main(String[] args) {
         Display display = new Display();
         Shell shell = new Shell(display);
-        RowLayout rowLayout = new RowLayout(SWT.VERTICAL);
-        rowLayout.marginLeft = 10;
-        rowLayout.marginTop = 10;
-        rowLayout.spacing = 15;
-        shell.setLayout(rowLayout);
+
+        RowLayout rowLayout = createRowLayout(shell, SWT.VERTICAL);
 
         Text text = new Text(shell, SWT.CENTER);
 
-        Button button = new Button(shell, SWT.PUSH);
-        button.setText("Don't push me");
+        Button button = createPushButton(shell, SWT.PUSH, "Don't push me");
 
         Group group = new Group(shell, SWT.NONE);
         group.setLayout(new RowLayout(SWT.HORIZONTAL));
 
-        Button buttonFirst = new Button(group, SWT.RADIO);
-        buttonFirst.setText("Radio 1");
+        Button buttonFirst = createPushButton(group, SWT.RADIO, "Radio 1");
 
-        Button buttonSecond = new Button(group, SWT.RADIO);
-        buttonSecond.setText("Radio 2");
+        Button buttonSecond = createPushButton(group, SWT.RADIO, "Radio 2");
 
-        Button buttonThird = new Button(group, SWT.RADIO);
-        buttonThird.setText("Radio 3");
+        Button buttonThird = createPushButton(group, SWT.RADIO, "Radio 3");
 
-        MessageBox messageBox = new MessageBox(shell, SWT.OK | SWT.APPLICATION_MODAL);
-        messageBox.setMessage("No coincidence!");
+        MessageBox messageBox = createMessageBox(shell, SWT.APPLICATION_MODAL, "No coincidence!");
 
         button.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -65,4 +57,33 @@ public class ThirdComponent {
         }
         display.dispose();
     }
+
+    protected static Button createPushButton(Shell parent, int style, String buttonText) {
+        Button button = new Button(parent, style);
+        button.setText(buttonText);
+        return button;
+    }
+
+    protected static Button createPushButton(Group parent, int style, String buttonText) {
+        Button button = new Button(parent, style);
+        button.setText(buttonText);
+        return button;
+    }
+
+    protected static MessageBox createMessageBox (Shell parent, int style, String messageText) {
+        MessageBox messageBox = new MessageBox(parent, style);
+        messageBox.setMessage(messageText);
+        return messageBox;
+    }
+
+    protected static RowLayout createRowLayout (Shell parent, int style) {
+        RowLayout rowLayout = new RowLayout(style);
+        rowLayout.marginLeft = 10;
+        rowLayout.marginTop = 10;
+        rowLayout.spacing = 15;
+        parent.setLayout(rowLayout);
+        return rowLayout;
+    }
 }
+
+

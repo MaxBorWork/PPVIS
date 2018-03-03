@@ -5,6 +5,8 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 import org.eclipse.swt.widgets.Combo;
 
+import java.util.ArrayList;
+
 public class FirstSWTApplication {
     public static void main(String[] args) {
         Display display = new Display();
@@ -20,16 +22,28 @@ public class FirstSWTApplication {
         shell.setLayout(rowLayout);
 
         Text text = new Text(shell, SWT.CENTER);
-        //text.setSize(200, 100);
+
         Button button = new Button(shell, SWT.PUSH);
         Combo combo = new Combo(shell, SWT.DROP_DOWN);
 
+        MessageBox messageBox = createMessageBox(shell, SWT.APPLICATION_MODAL, "No coincidence!");
         button.setText("Button");
-        //button.setSize(300,50);
+
+        ArrayList<String> list = new ArrayList<>();
+
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                combo.add(text.getText());
+                boolean textExist = false;
+                for (String aList : list) {
+                    if (aList.equals(text.getText()))
+                        textExist = true;
+                }
+                if (!textExist) {
+                    list.add(text.getText());
+                    combo.add(text.getText());
+                }
+                else messageBox.open();
             }
         });
         text.pack();
@@ -42,5 +56,11 @@ public class FirstSWTApplication {
             }
         }
         display.dispose();
+    }
+
+    protected static MessageBox createMessageBox (Shell parent, int style, String messageText) {
+        MessageBox messageBox = new MessageBox(parent, style);
+        messageBox.setMessage(messageText);
+        return messageBox;
     }
 }

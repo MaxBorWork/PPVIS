@@ -37,7 +37,7 @@ public class FourthComponent {
         button.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                if (checkOne.getText().equals(text.getText()) )
+                if (checkOne.getText().equals(text.getText()))
                     checkOne.setSelection(true);
                 else if (checkTwo.getText().equals(text.getText()))
                     checkTwo.setSelection(true);

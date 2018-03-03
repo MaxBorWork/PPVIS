@@ -25,22 +25,8 @@ public class FifthComponent {
         Button buttonThree = new Button(shell, SWT.PUSH);
         buttonThree.setText("Push 3 time");
 
-        Table table = new Table(shell, SWT.MULTI | SWT.BORDER);
-        table.setLinesVisible(true);
-        table.setHeaderVisible(true);
+        Table table = createTable(shell, SWT.MULTI | SWT.BORDER);
 
-        TableColumn columnOne = new TableColumn(table, SWT.NONE);
-        columnOne.setText("First column");
-
-        TableColumn columnTwo = new TableColumn(table, SWT.NONE);
-        columnTwo.setText("Second column");
-
-       /* TableItem itemOne = new TableItem(table, SWT.NONE);
-        itemOne.setText(0, "wow");
-        itemOne.setText(1, "kek");*/
-
-        /*TableItem itemTwo = new TableItem(table, SWT.NONE);
-        itemTwo.setText(1, "lol");*/
         TableItem item = new TableItem(table, SWT.NONE);
 
         table.getColumn(0).pack();
@@ -71,9 +57,6 @@ public class FifthComponent {
         });
 
 
-
-
-
         table.setSize(table.computeSize(SWT.DEFAULT, 200));
         text.pack();
         shell.open();
@@ -83,5 +66,18 @@ public class FifthComponent {
             }
         }
         display.dispose();
+    }
+
+    protected static Table createTable (Shell parent, int style) {
+        Table table = new Table(parent, style);
+        table.setLinesVisible(true);
+        table.setHeaderVisible(true);
+
+        TableColumn columnOne = new TableColumn(table, SWT.NONE);
+        columnOne.setText("First column");
+
+        TableColumn columnTwo = new TableColumn(table, SWT.NONE);
+        columnTwo.setText("Second column");
+        return table;
     }
 }
