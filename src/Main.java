@@ -71,11 +71,11 @@ public class Main {
         Group groupThirdComp = new Group(shell, SWT.NONE);
         groupThirdComp.setLayout(new RowLayout(SWT.HORIZONTAL));
 
-        Button buttonThirdCompOne = createPushButton(groupThirdComp, SWT.RADIO, "Radio 1");
+        Button buttonThirdCompOne = createPushButton(groupThirdComp, SWT.RADIO, "1");
 
-        Button buttonThirdCompTwo = createPushButton(groupThirdComp, SWT.RADIO, "Radio 2");
+        Button buttonThirdCompTwo = createPushButton(groupThirdComp, SWT.RADIO, "2");
 
-        Button buttonThirdCompThree = createPushButton(groupThirdComp, SWT.RADIO, "Radio 3");
+        Button buttonThirdCompThree = createPushButton(groupThirdComp, SWT.RADIO, "3");
 
         //MessageBox messBoxThree = createMessageBox(shell, SWT.APPLICATION_MODAL, "No coincidence!");
 
@@ -110,23 +110,32 @@ public class Main {
         groupFourthComp.setLayout(new RowLayout(SWT.VERTICAL));
 
         Button checkOne = new Button(groupFourthComp, SWT.CHECK);
-        checkOne.setText("Check 1");
+        checkOne.setText("1");
 
         Button checkTwo = new Button(groupFourthComp, SWT.CHECK);
-        checkTwo.setText("Check 2");
+        checkTwo.setText("2");
 
         Button checkThree = new Button(groupFourthComp, SWT.CHECK);
-        checkThree.setText("Check 3");
+        checkThree.setText("3");
 
         btnFourthComp.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                if (checkOne.getText().equals(textFour.getText()))
-                    checkOne.setSelection(true);
-                else if (checkTwo.getText().equals(textFour.getText()))
-                    checkTwo.setSelection(true);
-                else if (checkThree.getText().equals(textFour.getText()))
-                    checkThree.setSelection(true);
+                if (checkOne.getText().equals(textFour.getText())) {
+                    if (checkOne.getSelection())
+                        checkOne.setSelection(false);
+                    else checkOne.setSelection(true);
+                }
+                else if (checkTwo.getText().equals(textFour.getText())) {
+                    if (checkTwo.getSelection())
+                        checkTwo.setSelection(false);
+                    else checkTwo.setSelection(true);
+                }
+                else if (checkThree.getText().equals(textFour.getText())) {
+                    if (checkThree.getSelection())
+                        checkThree.setSelection(false);
+                    else checkThree.setSelection(true);
+                }
                 else messBox.open();
             }
         });
@@ -152,6 +161,8 @@ public class Main {
             public void widgetSelected(SelectionEvent e) {
                 TableItem itemNew = new TableItem(table, SWT.NONE);
                 itemNew.setText(0, textFive.getText());
+                int itemIndex = table.indexOf(itemNew);
+                //itemNew.sel
 
                 btnFifthCompTwo.addSelectionListener(new SelectionAdapter() {
                     @Override
